@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cute Birthday Envelope ❤️🎂</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ffb6d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+/* Envelope Parent */
+.letter-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.animated-mail {
+  position: absolute;
+  height: 150px;
+  width: 200px;
+  transition: 0.4s;
+}
+
+/* BODY COLOR */
+.animated-mail .body {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 100px 200px;
+  border-color: transparent transparent #ff72b6 transparent;
+  z-index: 2;
+}
+
+/* Top Fold */
+.animated-mail .top-fold {
+  position: absolute;
+  top: 50px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  border-color: #ff8cc8 transparent transparent transparent;
+  transform-origin: 50% 0%;
+  transition: transform 0.4s 0.4s, z-index 0.2s 0.4s;
+  z-index: 2;
+}
+
+.animated-mail .back-fold {
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  height: 100px;
+  background: #ff8cc8;
+  z-index: 0;
+}
+
+/* Left fold */
+.animated-mail .left-fold {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 0 50px 100px;
+  border-color: transparent transparent transparent #ff72b6;
+  z-index: 2;
+}
+
+/* Letter Paper */
+.animated-mail .letter {
+  position: absolute;
+  left: 20px;
+  bottom: 0px;
+  width: 160px;
+  height: 60px;
+  background: white;
+  z-index: 1;
+  overflow-y: auto;
+  border-radius: 8px;
+  transition: 0.4s 0.2s;
+  padding: 6px;
+}
+
+/* Expand Paper on hover */
+.letter-image:hover .animated-mail .letter {
+  height: 320px; /* << bigger paper */
+}
+
+/* Open top fold */
+.letter-image:hover .animated-mail .top-fold {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+/* Move whole envelope down */
+.letter-image:hover .animated-mail {
+  transform: translateY(50px);
+}
+
+/* Paper content */
+.letter-content {
+  color: #333;
+  font-size: 13px;
+  text-align: center;
+}
+
+.letter-image:hover .shadow {
+  width: 250px;
+}
+
+.shadow {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  width: 400px;
+  height: 30px;
+  transform: translateX(-50%);
+  background: radial-gradient(rgba(0,0,0,0.3), transparent);
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+/* Image inside letter */
+.letter-content img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: 0;
+  font-size: 30px;
+  animation: floatUp 3s linear forwards;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% {opacity: 1; transform: translateY(0) scale(1);}
+  100% {opacity: 0; transform: translateY(-200px) scale(1.4);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="letter-image" id="letterBox">
+  <div class="animated-mail">
+    <div class="back-fold"></div>
+    <div class="letter">
+      <div class="letter-content" id="letterText">
+        <img src="Image.jpg">
+
+        Happy Birthday Ate Ebrahgen!! 🎂🎉💖<br><br>
+          I hope your special day is filled with joy, love,
+          and endless smiles. You deserve all the good vibes!
+          Keep shining bright! 💕<br><br>
+          Wishing you blessings, success, happiness,
+          and memories that make your heart flutter! 💓<br><br>
+          Enjoy every moment! 🎀✨
+          <br>
+          <br>
+          <br>
+             <br>
+          <br>
+          <br>
+          
+        </p>
+      </div>
+    </div>
+    <div class="top-fold"></div>
+    <div class="body"></div>
+    <div class="left-fold"></div>
+  </div>
+  <div class="shadow"></div>
+</div>
+
+<script>
+const letter = document.getElementById("letterBox");
+
+letter.addEventListener("click", () => {
+  createHearts();
+});
+
+/* Cute Hearts */
+function createHearts() {
+  for (let i = 0; i < 3; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💗";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 3000);
+  }
+}
+</script>
+
+</body>
+</html>
